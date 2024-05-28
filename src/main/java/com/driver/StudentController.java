@@ -19,7 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("students")
 public class StudentController {
 
-    StudentService studentService = new StudentService();
+    @Autowired
+    private StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        super();
+        this.studentService= studentService;
+    }
+
+    public StudentController() {
+
+    }
     @PostMapping("/add-student")
     public ResponseEntity<String> addStudent(@RequestBody Student student){
         studentService.addStudent(student);
@@ -75,5 +85,14 @@ public class StudentController {
     public ResponseEntity<String> deleteAllTeachers(){
         studentService.deleteAllTeachers();
         return new ResponseEntity<>("All teachers deleted successfully", HttpStatus.CREATED);
+    }
+
+
+    public StudentService getStudentRepository() {
+        return studentService;
+    }
+
+    public void setStudentRepository(StudentService studentService) {
+        this.studentService = studentService;
     }
 }

@@ -19,14 +19,14 @@ public class StudentRepository {
 
     public void saveStudent(Student student){
         // your code goes here
-        if(!studentMap.containsKey(student.getName())){
+        if(student != null && !studentMap.containsKey(student.getName())){
             studentMap.put(student.getName(),student);
         }
     }
 
     public void saveTeacher(Teacher teacher){
         // your code goes here
-        if(!teacherMap.containsKey(teacher.getName())){
+        if(teacher != null && !teacherMap.containsKey(teacher.getName())){
             teacherMap.put(teacher.getName(),teacher);
         }
     }
